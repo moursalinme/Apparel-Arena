@@ -10,7 +10,7 @@ const createToken =  function (id) {
   return jwt.sign({id}, process.env.JWT_SECRET_KEY, {
     expiresIn: process.env.JWT_EXP_TIME
   });
-};
+}; 
 
 const sendToken =  function (user, res) {
   const token = createToken(user._id);
@@ -94,7 +94,6 @@ exports.restrictTo = (...roles) => {
   }
 };
 
-
 exports.forgotPassword = Model => catchAsync(async(req, res, next) => {
 
   // req a mail ase.. 
@@ -162,6 +161,7 @@ exports.resetPassword = Model => catchAsync(async(req, res, next) => {
 
 exports.updateMyPassword = Model => catchAsync (async(req, res, next) => {
   const { user } = req;
+  
   if (!(await user.isCorrectPassword(req.body.currentPassword, user.password))) {
     return next(new AppError('Current Password do not match.', 403));
   }
@@ -181,3 +181,4 @@ exports.updateMyPassword = Model => catchAsync (async(req, res, next) => {
     data: user,
   });
 });
+

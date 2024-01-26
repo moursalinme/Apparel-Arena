@@ -3,7 +3,7 @@ const Product = require('./../models/productModel');
 const AppError = require('./../utils/appError');
 
 exports.getAllProduct = catchAsync(async (req, res, next) => {
-  const products = await Product.find().populate('shop');
+  const products = await Product.find().populate('shop'); 
   res.status(200).json({
     status: 'success',
     data: products,

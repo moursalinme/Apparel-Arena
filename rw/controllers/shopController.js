@@ -3,7 +3,6 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const Shop = require('./../models/shopModel');
 
-
 exports.getMe = catchAsync(async(req, res, next) => {
   const { user } = req;
   user.password = undefined;
@@ -27,6 +26,22 @@ exports.getMyProducts = catchAsync(async(req, res, next) => {
   });
 });
 
+exports.getProductByShopAndCategory = catchAsync(async(req, res, next) => {
+  const {id, category} = req.params;
+
+  if (!(await Shop.findById(id))) {
+    return next(new AppError ('Invalid Link or the shop does not exist.', 400));
+  }
+
+  const products = await Product.find({shop: id, category : category});
+  console.log(products);
+
+  res.status(200).json({
+    status:'success',
+    results: products.length,
+    products, 
+  });
+});
 
 
 
