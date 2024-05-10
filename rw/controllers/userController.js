@@ -29,7 +29,7 @@ const User = require('./../models/userModel');
 // });
 // File UPloading done...
 
-exports.uploadUserPhoto = upload.single('photo');
+// exports.uploadUserPhoto = upload.single('photo');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
     const allUsers = await User.find();
