@@ -29,11 +29,16 @@ app.use(xss());
 const userRouter = require('./routers/userRoute');
 const shopRouter = require('./routers/shopRoute');
 const productRouter = require('./routers/productRoute');
+const orderRouter = require('./routers/orderRoute');
+const customDesignRouter = require('./routers/customDesignRoute');
 
 // Routes
+
+app.use('/products/addDesign', customDesignRouter);
 app.use('/users', userRouter);
 app.use('/shops', shopRouter);
 app.use('/products', productRouter);
+app.use('/orders', orderRouter);
 
 
 app.all('*', (req, res, next) => {

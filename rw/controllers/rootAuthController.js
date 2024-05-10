@@ -77,7 +77,6 @@ exports.signup = Model => catchAsync(async(req, res, next) => {
     email : req.body.email,
     phone : req.body.phone, 
     password :  req.body.password, 
-    confirmPassword : req.body.password,
   };
 
   const user = await Model.create(data);
@@ -152,7 +151,6 @@ exports.resetPassword = Model => catchAsync(async(req, res, next) => {
     return next(new AppError('Invalid Token Provided or time expired.', 403));
   }
   user.password = req.body.password;
-  user.confirmPassword = req.body.confirmPassword;
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
   await user.save();
@@ -165,14 +163,8 @@ exports.updateMyPassword = Model => catchAsync (async(req, res, next) => {
   if (!(await user.isCorrectPassword(req.body.currentPassword, user.password))) {
     return next(new AppError('Current Password do not match.', 403));
   }
-  
-  if (req.body.password !== req.body.confirmPassword) {
-    return next(AppError('Passwords do not match', 400));
-  }
 
   user.password = req.body.password;
-  user.confirmPassword = req.body.password;
-
   await user.save();
  
   console.log(user);

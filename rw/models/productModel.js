@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
   name : {
     type : String, 
-    unique : [true, 'Product name must be unique.'],
     required: [true, 'Product must have a name.'], 
   },
 
@@ -16,6 +15,7 @@ const productSchema = new mongoose.Schema({
     },
     required : [true, 'Select a Product Category.'],
   },
+
 
   price : {
     type: Number, 
@@ -37,16 +37,41 @@ const productSchema = new mongoose.Schema({
     default : 0, 
   },
 
+  starCount: {
+    type: Number,
+    default: 0,
+  },
+
   shop: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'shop',
+  },
+
+  sizes: [
+    {
+      size: {
+        type: String,
+        required: true,
+      }, 
+      quantity: {
+        type: Number,
+        min : [0, 'Quantity can not be less than 0.'],
+        required: true,
+      }
+    }
+  ],
+
+  reviews : [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'review',
+    }
+  ],
+  createdAt: { type: Date, default: Date.now },
+  imageUrls: [{ type: String }],
+  description: {
+    type: String,
   }
-
-  // quantity & sizes,
-  // Shop Name
-  // Reviews.
-  // Images or Designs.
-
 }, {
   toJSON : { virtuals : true }
 });

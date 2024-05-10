@@ -43,8 +43,6 @@ exports.getProductByShopAndCategory = catchAsync(async(req, res, next) => {
   });
 });
 
-
-
 exports.getAllShops = catchAsync(async (req, res, next) => {
   const allShops = await Shop.find();
   
@@ -77,4 +75,19 @@ exports.deleteShop = catchAsync(async(req, res, next) => {
     status: 'success',
     data : null,
   });
+});
+
+// This code is not part of the backend API.
+// Add dummy Shops
+
+const dummyShopList = require('./../utils/dummyShopData');
+exports.addDummyShops = catchAsync(async (req, res, next) => {
+
+  const shopList = dummyShopList.dummyShopData;
+  const addedShops = await Shop.insertMany(shopList);
+
+  res.status(200).json({
+    status:"Added Shops",
+    shops: addedShops,
+  })
 });

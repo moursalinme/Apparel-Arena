@@ -11,6 +11,7 @@ const shopSchema = new mongoose.Schema ({
     minlenth: [1, 'Shop must have a name.'],
     maxlength: [20, 'Shop name must be at most 20 characters'],
   },
+
   email: {
     type: String,
     required: [true, 'Please enter your Email'],
@@ -29,26 +30,46 @@ const shopSchema = new mongoose.Schema ({
     type : Boolean, 
     default : false,
   },
-  // tradeLisence : {
-  //   type : String,
-  //   unique : [true, 'This trade lisence has alredy a shop in our site.'],
-  //   // required: false, 
-  // },
+  orders: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'order',
+      },
+      quantity: {
+        type: Number,
+      },
+      size: {
+        type: String,
+      }
+    }
+  ],
+
+  transactions: {
+    balance: {
+      type: Number,
+      default: 0,
+    },
+    withdrawn: {
+      type: Number,
+      default: 0,
+    }
+  },
+
+  tradeLisence : {
+    type : String,
+    // unique : [true, 'This trade lisence has alredy a shop in our site.'],
+    // required: false, 
+  },
   password: { 
     type: String,
     required: [true, 'Please provide a password'],
     minlength: 8,
     select: false,
   },
-  confirmPassword: {
+  photo: {
     type: String,
-    required: [true, 'Please confirm your password.'],
-    validate: {
-      validator(cfPassword) {
-        return this.password === cfPassword;
-      },
-      message: 'Passwords do not match...!',
-    },
+    default: 'default.jpg',
   },
   role : {
     type: String,
@@ -58,6 +79,17 @@ const shopSchema = new mongoose.Schema ({
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+
+  customDesigns: {
+    colors: [{type: String}],
+    designs: [{type: String}], 
+    price : {type: Number},
+  },
+  productSaleCount: {
+    type: Number,
+    default : 0,
+  }
+  // TODO: Most SOld product route.
 });
 
 

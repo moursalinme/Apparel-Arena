@@ -33,16 +33,6 @@ const userSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
-  confirmPassword: {
-    type: String,
-    required: [true, 'Please confirm your password.'],
-    validate: {
-      validator(cfPassword) {
-        return this.password === cfPassword;
-      },
-      message: 'Passwords do not match...!',
-    },
-  },
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
@@ -51,8 +41,9 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
-  profilepicture: {
+  photo: {
     type: String,
+    default: 'default.jpg',
   },
   dateCreated: { type: Date, default: Date.now },
   role: {
@@ -101,7 +92,6 @@ userSchema.methods.createPasswordResetToken = function () {
   console.log(this);;
   return resetToken;
 };
-
 
 const User = mongoose.model('user', userSchema);
 module.exports = User;

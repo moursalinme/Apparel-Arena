@@ -2,7 +2,6 @@ const express = require('express');
 const userController = require('./../controllers/userController');
 const userAuthController = require('../controllers/userAuthController');
 
-
 const router = express.Router();
 
 router.post('/signup', userAuthController.signup);
@@ -12,6 +11,12 @@ router.patch('/resetPassword/:token', userAuthController.resetPassword);
 
 // Make Sure User Logged In.
 router.use(userAuthController.protect);
+
+router.post('/updateme', 
+    userAuthController.protect, 
+    userController.uploadUserPhoto, 
+    userController.updateMe
+);
 
 router.get('/me', userController.getMe);
 router.patch('/updateMyPassword', userAuthController.updateMyPassword);

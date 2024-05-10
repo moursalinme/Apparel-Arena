@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-
 const app = require('./app');
 
 dotenv.config();
@@ -17,3 +16,4 @@ console.log(process.env.NODE_ENV);
 // } else {
   // console.log('Can not run the production UNIT.');
 // }
+
