@@ -5,7 +5,7 @@ const globalErrorController = require('./controllers/errorController');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
-const xss = require('xss-clean');
+
 
 // Create App
 const app = express();
@@ -23,7 +23,6 @@ app.use(morgan('dev'));
 
 // Protect SQL injection
 app.use(mongoSanitize());
-app.use(xss());
 
 // app.com
 const userRouter = require('./routers/userRoute');
