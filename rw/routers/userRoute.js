@@ -14,7 +14,6 @@ router.use(userAuthController.protect);
 
 router.post('/updateme', 
     userAuthController.protect, 
-    userController.uploadUserPhoto, 
     userController.updateMe
 );
 

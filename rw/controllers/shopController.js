@@ -3,6 +3,23 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const Shop = require('./../models/shopModel');
 
+
+exports.updateInfo = catchAsync(async(req, res, next) => {
+  const shop = await Shop.findById(req.user.id);
+
+  if (req.body.name) shop.name = req.body.name;
+  if (req.body.email) shop.email = req.body.email;
+  if (req.body.photo) shop.photo = req.body.photo;
+
+  const updatedShop = await shop.save();
+
+  res.status(200).json({
+    status: "success", 
+    data: updatedShop,
+  });
+
+});
+
 exports.getMe = catchAsync(async(req, res, next) => {
   const { user } = req;
   user.password = undefined;

@@ -69,7 +69,7 @@ const shopSchema = new mongoose.Schema ({
   },
   photo: {
     type: String,
-    default: 'default.jpg',
+    default: 'https://i.ibb.co/XC3yQbY/default.jpg',
   },
   role : {
     type: String,

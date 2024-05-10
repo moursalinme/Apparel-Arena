@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'default.jpg',
+    default: 'https://i.ibb.co/DCbcNX1/default.jpg',
   },
   dateCreated: { type: Date, default: Date.now },
   role: {

@@ -15,6 +15,7 @@ router.get('/:id/:category', shopController.getProductByShopAndCategory);
 router.use(shopAuthController.protect);
 router.patch('/updateMyPassword', shopAuthController.updateMyPassword);
 router.get('/me', shopController.getMe);
+router.get('/updateInfo', shopController.updateInfo);
 router.get('/myProducts', shopController.getMyProducts);
 
 
