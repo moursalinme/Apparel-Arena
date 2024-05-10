@@ -5,6 +5,8 @@ const shopAuthController = require('../controllers/shopAuthController');
 
 const router = express.Router();
 
+router.get('/', shopController.getAllShops);
+
 router.get('/addDummyShops', shopController.addDummyShops);
 router.post('/login', shopAuthController.login);
 router.post('/signup', shopAuthController.signup);
@@ -17,6 +19,8 @@ router.patch('/updateMyPassword', shopAuthController.updateMyPassword);
 router.get('/me', shopController.getMe);
 router.get('/updateInfo', shopController.updateInfo);
 router.get('/myProducts', shopController.getMyProducts);
+
+
 
 
 // router.get('/', 
