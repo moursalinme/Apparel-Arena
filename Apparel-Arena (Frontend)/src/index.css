@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer components {
+  .containerArena {
+    @apply max-w-[1500px] mx-auto px-4 md:px-10 lg:px-16 xl:px-[80px] 2xl:px-[100px]
+  }
+  .arenaBtn {
+    @apply text-sm font-semibold text-white bg-arena-color rounded-md hover:bg-arena-color-hover duration-200
+  }
+}
+
+/* select color */
+/* #6A9485  green*/
+/* // #366454 green hover */
+/* #F18787  red*/
+/* #d62a2a  red hover*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+.categoryScroll::-webkit-scrollbar {
+  width: 5px;
+  height:  5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6A9485 ;
+  border-radius: 50px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #366454;
+}
+
+.homeSideBar::-webkit-scrollbar {
+  display: none;
+}
